@@ -1,0 +1,14 @@
+                               README
+
+
+This is the official readme file for my first Operating System.
+it will be expanded further soon..
+
+steps to compile the os after pulling it from git.
+
+-->	type "make"
+-->	type "bochs"
+
+for running this os you should have bochs installed you can do that in ubnutu by typing
+	"sudo apt-get install bochs"
+also a bochs-sdl plugin is required which could be downloaded from ubuntu software center.

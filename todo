@@ -1,0 +1,16 @@
+->	add the pointer reference to putc function in monitor.cpp so that it is able to handle the function syntax line.
+	video v;
+	v.putc('A').putc('B').putc('C');
+	that is it can link various call together.
+	and if possible also add this line.
+	v.putc('A').write("Continued..").putc('A');
+	
+->	go ahead with GDT and IVT tutorial.
+
+->	the write portion of the function which handles the integer is really slow and not optimised at all.
+	find a better solution to it by either using arrays or otherwise.
+
+->	implement the new, new[], delete, delete[] operators so that we can access the array
+
+->	finish the implemantation of string class.
+	and also integrate this class with other classes like video class.
