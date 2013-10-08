@@ -1,14 +1,52 @@
                                README
 
 
-This is the official readme file for my first Operating System.
-it will be expanded further soon..
+Steps to execute this Hello World Operating System.
 
-steps to compile the os after pulling it from git.
+First of all make sure that you have the following tools installed on your System.
 
--->	type "make"
--->	type "bochs"
+--> g++		(for compiling the c++ header files)
+--> nasm	(Netwide Assembler for compiling the assembly language part of it)
+--> bochs	(for the execution of the OS)
 
-for running this os you should have bochs installed you can do that in ubnutu by typing
-	"sudo apt-get install bochs"
-also a bochs-sdl plugin is required which could be downloaded from ubuntu software center.
+Note: It is not recommended to use qemu as this OS is still not tested in qemu.
+
+If you are using fedora then Simply type the following.
+	$> make
+	$> bochs
+bochs may give the options of loading the bochsrc.txt file 
+If it prompts for a input then type 6 and press Enter.
+
+
+else If you are using ubuntu then there is a little extra work that
+you have to do (sorry cannot avoid this it is a bug in ubuntu Blame them).
+
+Since Bochs cannot use X Windows system as the display_library I have to
+change the display library to SDL.
+but you need to install the sdl library. For that Go to Ubuntu Software Center 
+and search for a package called bochs-sdl. go ahead install it.
+And then type the follwing commands in terminal.
+	$> make
+	$> bochs
+
+
+The bochs will open up a grub screen which will have some intro messages and then a 
+prompt stating
+
+grub>_
+
+type "kernel 200+21" (without quotes) and press enter.
+It should give a one line message and again prompt for more input
+
+type "boot" (without quotes) and press enter.
+
+Hurray the operating System should boot by now.
+
+
+
+
+Thats it for now,
+will keep updating this readme for more insights of this OS.
+
+Regards,
+Krishna

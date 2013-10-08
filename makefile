@@ -4,7 +4,7 @@
 OBJECT=boot.o main.o system.o utils/string.o drivers/monitor.o
 
 # cross compiler of your choice.
-CC=gcc
+CC=g++
 
 # list of arguments to the compiler.
 CFLAGS=-Wall -Wextra -nostdlib -fno-exceptions -fno-rtti -fno-stack-protector -Wno-write-strings
