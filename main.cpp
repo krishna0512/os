@@ -9,8 +9,7 @@ int main () {
 	int n=23;
 	v->write(n);
 	v->write('\n');
-	v->write("This is Krishna Tulsyan");
-	v->write('\'');
+	v->write("This is Krishna Tulsyan")->write('\'');
 	v->write((float)23.003202);
 	v->write('\n');
 	v->write(25);

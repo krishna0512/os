@@ -22,7 +22,7 @@ void video::init (void) {
 	fore_color=COLOR_WHITE;
 }
 
-void video::clear (void)
+video* video::clear (void)
 {
 	for (int i=0;i<80*25;i++)
 	{
@@ -31,6 +31,7 @@ void video::clear (void)
 	}
 	cursor_x=cursor_y=0;
 	updateCursor();		//sets the cursor position to 0,0
+	return this;
 }
 
 void video::putc (char c)
@@ -54,24 +55,26 @@ void video::putc (char c)
 	scroll();
 }
 
-void video::putc (char c, int x, int y)
+video* video::putc (char c, int x, int y)
 {
 	vid[x+(y*80)]=attribute(c,back_color,fore_color);
 
 	//please notice that this function doesnot call the scroll function hence doesnt affect cursor position.
 	//i designed it this way bcoz if it will affect the cursor position then it will be a mess tracking it.
+	return this;
 }
 
-void video::write (char* s)
+video* video::write (char* s)
 {
 	int i=0;
 	while (s[i])
 	{
 		putc(s[i++]);
 	}
+	return this;
 }
 
-void video::write (int n)
+video* video::write (int n)
 {
 	//first we have to check for zero at the end of number.
 	int b=n;
@@ -103,13 +106,15 @@ void video::write (int n)
 		putc('0');
 		c--;
 	}
+	return this;
 }
 
-void video::write(char c) {
+video* video::write(char c) {
 	putc(c);
+	return this;
 }
 
-void video::write (float nn) {
+video* video::write (float nn) {
 /*
  * There is a bug in this code function that if the call is made like
  * write((foat)23.003202);
@@ -118,7 +123,7 @@ void video::write (float nn) {
  */
 	float decimal=nn-(int)nn;
 	write((int)nn);
-	if (decimal == 0) return;
+	if (decimal == 0) return this;
 
 	putc('.');
 	decimal*=10;
@@ -129,12 +134,13 @@ void video::write (float nn) {
 	}
 	while ((float)((float)decimal-(float)((int)decimal)) >0.0005) decimal*=10;
 	write((int)decimal);
+	return this;
 }
 
-void video::write (double nn) {
+video* video::write (double nn) {
 	double decimal=nn-(int)nn;
 	write((int)nn);
-	if (decimal == 0) return;
+	if (decimal == 0) return this;
 
 	putc('.');
 	decimal*=10;
@@ -145,9 +151,10 @@ void video::write (double nn) {
 	}
 	while ((double)((double)decimal-(double)((int)decimal)) >0.0005) decimal*=10;
 	write((int)decimal);
+	return this;
 }
 
-void video::setCursorPosition (int xx,int yy) 
+video* video::setCursorPosition (int xx,int yy) 
 {
 	cursor_x=xx;
 	cursor_y=yy;
@@ -158,12 +165,14 @@ void video::setCursorPosition (int xx,int yy)
 	// cursor HIGH port to vga INDEX register
 	outportb(0x3D4, 0x0E);
 	outportb(0x3D5, (char)((position>>8)&0xFF));
+	return this;
 }
 
-void video::setColor(char b, char f)
+video* video::setColor(char b, char f)
 {
 	back_color=b;
 	fore_color=f;
+	return this;
 }
 
 unsigned short video::attribute (char c, char b, char f)
@@ -198,9 +207,3 @@ void video::scroll (void)
 	}
 	updateCursor();
 }
-
-
-
-
-
-

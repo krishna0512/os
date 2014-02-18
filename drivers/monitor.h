@@ -29,15 +29,15 @@ class video
 		video (void);									//contructor to init
 		~video (void);									//destructor to destroy
 		void init(void);								//temporary func to be used till def of new.
-		void clear (void);								//clears the screen
-		void putc (char character, int x, int y);		//to print the char @ specific position.
-		void write (char* string);						//prints a null terminated string.
-		void write (int n);								//to print the decimal number.
-		void write (char c);							//to print a character to screen.
-		void write (float n);							//to print the floating number.
-		void write (double n);
-		void setCursorPosition (int xx, int yy);		//changes the postition of the cursor
-		void setColor (char background, char foreground);
+		video* clear (void);								//clears the screen
+		video* putc (char character, int x, int y);		//to print the char @ specific position.
+		video* write (char* string);						//prints a null terminated string.
+		video* write (int n);								//to print the decimal number.
+		video* write (char c);							//to print a character to screen.
+		video* write (float n);							//to print the floating number.
+		video* write (double n);
+		video* setCursorPosition (int xx, int yy);		//changes the postition of the cursor
+		video* setColor (char background, char foreground);
 
 	private:
 		int cursor_x,cursor_y;				//to store the postition of cursor.
