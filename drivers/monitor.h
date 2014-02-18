@@ -1,12 +1,3 @@
-/*
-	This file contains all the functions needed to directly interact
-	with the VGA screen and mind that the screen driver will NOT be
-	placed anywhere else than this file.
-
-	LAST UPDATE ----> 11/03/2013
-*/
-
-
 #ifndef _MONITOR_H
 #define _MONITOR_H
 
@@ -37,12 +28,14 @@ class video
 	public:
 		video (void);									//contructor to init
 		~video (void);									//destructor to destroy
+		void init(void);								//temporary func to be used till def of new.
 		void clear (void);								//clears the screen
-		void putc (char character);						//prints a single character
 		void putc (char character, int x, int y);		//to print the char @ specific position.
 		void write (char* string);						//prints a null terminated string.
 		void write (int n);								//to print the decimal number.
-		void write (string s);
+		void write (char c);							//to print a character to screen.
+		void write (float n);							//to print the floating number.
+		void write (double n);
 		void setCursorPosition (int xx, int yy);		//changes the postition of the cursor
 		void setColor (char background, char foreground);
 
@@ -51,6 +44,7 @@ class video
 		char fore_color, back_color;		//to store the background and foreground colors.
 		unsigned short *vid;				//video memory for output
 		unsigned short attribute (char character, char background, char foreground);
+		void putc (char character);			//library function to prints a single character
 		void updateCursor (void);			//this quickly sets the cursor position to cursorx, cursory.
 		void scroll(void);					//this function does all the nessacary scrolling.
 };

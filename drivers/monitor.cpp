@@ -1,8 +1,3 @@
-
-/*
-	LAST UPDATE ----> 17/05/2013
-*/
-
 #include "monitor.h"
 
 
@@ -18,6 +13,13 @@ video::~video(void)
 {
 	vid=0x00;
 	cursor_x=cursor_y=0;
+}
+
+void video::init (void) {
+	vid=(unsigned short*) 0xb8000;
+	cursor_x=cursor_y=0;
+	back_color=COLOR_BLACK;		//initial values of the color
+	fore_color=COLOR_WHITE;
 }
 
 void video::clear (void)
@@ -103,12 +105,46 @@ void video::write (int n)
 	}
 }
 
-void video::write (string s)
-{
-	for (int i=0;i<s.length;i++)
-	{
-		putc(s.charAt(i));
+void video::write(char c) {
+	putc(c);
+}
+
+void video::write (float nn) {
+/*
+ * There is a bug in this code function that if the call is made like
+ * write((foat)23.003202);
+ * it gives the output as 23.0032024563
+ * while the double function below works perfectly fine...
+ */
+	float decimal=nn-(int)nn;
+	write((int)nn);
+	if (decimal == 0) return;
+
+	putc('.');
+	decimal*=10;
+	// first print out all the zeros after decimal point.
+	while (!(int)decimal) {
+		write('0');
+		decimal*=10;
 	}
+	while ((float)((float)decimal-(float)((int)decimal)) >0.0005) decimal*=10;
+	write((int)decimal);
+}
+
+void video::write (double nn) {
+	double decimal=nn-(int)nn;
+	write((int)nn);
+	if (decimal == 0) return;
+
+	putc('.');
+	decimal*=10;
+	// first print out all the zeros after decimal point.
+	while (!(int)decimal) {
+		write('0');
+		decimal*=10;
+	}
+	while ((double)((double)decimal-(double)((int)decimal)) >0.0005) decimal*=10;
+	write((int)decimal);
 }
 
 void video::setCursorPosition (int xx,int yy) 

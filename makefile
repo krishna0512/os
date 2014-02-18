@@ -16,6 +16,7 @@ AFLAGS=-f elf
 all: $(OBJECT) link.ld 
 	ld -Tlink.ld -o kernel $(OBJECT)
 	cat stage1 stage2 pad kernel >floppy.img
+	bochs
 	
 main.o: main.cpp
 	$(CC) -o main.o -c main.cpp $(CFLAGS)
