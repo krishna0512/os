@@ -1,7 +1,7 @@
 # Master MakeFile.
 
 # all the object files in one variable.
-OBJECT=boot.o main.o system.o utils/string.o drivers/monitor.o
+OBJECT=boot.o main.o system.o drivers/monitor.o
 
 # cross compiler of your choice.
 CC=g++
@@ -23,9 +23,6 @@ main.o: main.cpp
 
 system.o: system.cpp
 	$(CC) -o system.o -c system.cpp $(CFLAGS)
-
-utils/string.o: utils/string.h utils/string.cpp
-	$(CC) -o utils/string.o -c utils/string.cpp $(CFLAGS)
 
 drivers/monitor.o: drivers/monitor.h drivers/monitor.cpp
 	$(CC) -o drivers/monitor.o -c drivers/monitor.cpp $(CFLAGS)
